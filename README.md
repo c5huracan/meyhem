@@ -25,9 +25,11 @@ curl -X POST https://api.rhdxm.com/search \
 ## Quick Start: Python
 
 ```bash
-pip install httpx
-python example_agent.py
+pip install httpx claudette
+python example_agent.py "What are the best practices for error handling in Python async code?"
 ```
+
+The example agent uses Claude to autonomously search, read results, report outcomes, and synthesize an answer.
 
 ## How It Works
 
