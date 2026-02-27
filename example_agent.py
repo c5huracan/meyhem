@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
-"""Example Meyhem agent — full search → select → outcome flow"""
+"""Claudette-powered research agent using Meyhem search"""
 import httpx
+from claudette import Chat
 
 BASE = "https://api.rhdxm.com"
 
-r = httpx.post(f"{BASE}/search", json=dict(query="python asyncio best practices", max_results=3))
-data = r.json()
-search_id = data["search_id"]
+def meyhem_search(query: str, max_results: int = 3) -> dict:
+    "Search the web via Meyhem. Returns ranked results from multiple engines."
+    return httpx.post(f"{BASE}/search", json=dict(query=query, max_results=max_results, agent_id="claudette-agent")).json()
 
-print(f"Search ID: {search_id}")
-for i, res in enumerate(data["results"]):
-    print(f"  [{i}] {res['title'][:70]}  ({res['provider']}, score={res['score']:.2f})")
+def meyhem_select(search_id: str, url: str, position: int, provider: str) -> dict:
+    "Select a search result to get its full content."
+    return httpx.post(f"{BASE}/search/{search_id}/select", json=dict(url=url, position=position, provider=provider)).json()
 
-pick = data["results"][0]
-r2 = httpx.post(f"{BASE}/search/{search_id}/select", json=dict(url=pick["url"], position=0, provider=pick["provider"]))
-sel = r2.json()
-print(f"\nSelected: {pick['title'][:70]}")
-print(f"Content: {len(sel.get('content') or '')} chars")
+def meyhem_outcome(search_id: str, selection_id: str, success: bool) -> dict:
+    "Report whether the selected result helped answer the question."
+    return httpx.post(f"{BASE}/search/{search_id}/outcome", json=dict(success=success, selection_id=selection_id)).json()
 
-r3 = httpx.post(f"{BASE}/search/{search_id}/outcome", json=dict(success=True, selection_id=sel["selection_id"]))
-print(f"\nOutcome recorded: {r3.json()['outcome_id'][:8]}...")
-print("Done! This result now has a success signal that improves future rankings.")
+sp = """You are a research agent. Use meyhem_search to find information, meyhem_select to read promising results, then meyhem_outcome to report whether each result helped. Synthesize a final answer from what you learn."""
+
+if __name__ == "__main__":
+    import sys
+    q = " ".join(sys.argv[1:]) or "What are the best practices for error handling in Python async code?"
+    agent = Chat("claude-sonnet-4-20250514", sp=sp, tools=[meyhem_search, meyhem_select, meyhem_outcome])
+    list(agent.toolloop(q))
+    print(agent.h[-1].content[0]["text"])
