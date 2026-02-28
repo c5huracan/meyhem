@@ -20,14 +20,25 @@ curl -X POST https://api.rhdxm.com/search \
   -d '{"query": "python asyncio best practices", "max_results": 3}'
 ```
 
-## Quick Start: Python
+## MCP Discovery Agent
+
+Don't know which MCP server you need? The discovery agent finds it for you:
+
+```bash
+pip install httpx claudette
+python mcp_discover.py "I need to interact with a SQLite database"
+```
+
+It searches, reads docs, verifies configs, and returns a ready-to-paste JSON block. Every query makes Meyhem smarter for everyone.
+
+## Example Research Agent
 
 ```bash
 pip install httpx claudette
 python example_agent.py "What are the best practices for error handling in Python async code?"
 ```
 
-The example agent uses Claude to autonomously search, read results, and synthesize an answer.
+Uses Claude to autonomously search, read results, and synthesize an answer.
 
 ## How It Works
 
