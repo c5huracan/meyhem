@@ -1,12 +1,10 @@
 # Meyhem
 
-Agent-native search with feedback-driven ranking.
+Better search results for your AI tools. The more people use it, the smarter it gets.
 
-Search results ranked by whether agents actually succeed with them, not just relevance. Every outcome feeds back into ranking.
+No signup. No API key. Just search.
 
-Two engines (Exa + Tavily) in parallel, deduped and score-normalized. No signup, no API key.
-
-## Quick Start: MCP
+## Quick Start: MCP (10 seconds)
 
 Add to Claude Desktop, Cursor, or any MCP client:
 
@@ -29,17 +27,17 @@ pip install httpx claudette
 python example_agent.py "What are the best practices for error handling in Python async code?"
 ```
 
-The example agent uses Claude to autonomously search, read results, report outcomes, and synthesize an answer.
+The example agent uses Claude to autonomously search, read results, and synthesize an answer.
 
 ## How It Works
 
-1. **Search** -- dual-engine results, deduped and normalized
-2. **Select** -- pick a result, get full content
-3. **Outcome** -- report success or failure
+1. **Search** — two engines, one set of best results
+2. **Select** — pick a result, get the full page
+3. **Outcome** — it learns what works
 
-Every outcome improves future rankings for everyone.
+Every result makes it better: for everyone.
 
 ## Links
 
-- **Landing page + docs:** https://api.rhdxm.com
+- **Try it live:** https://api.rhdxm.com
 - **Interactive API docs:** https://api.rhdxm.com/docs
