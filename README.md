@@ -68,3 +68,13 @@ Uses Claude to autonomously search, read results, and synthesize an answer.
 - **PyPI:** https://pypi.org/project/meyhem/
 - **Try it live:** https://api.rhdxm.com
 - **API docs:** https://api.rhdxm.com/docs
+
+## Meta-Agent
+
+Describe what you need, get a working agent script:
+
+    pip install meyhem claudette
+    python meta_agent.py "monitor GitHub repos and post summaries to Slack"
+
+The meta-agent searches Meyhem for the best tools and libraries, then generates a complete Python script. No MCP required.
+
