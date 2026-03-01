@@ -1,23 +1,48 @@
 # Meyhem
 
-Better search results for your AI tools. The more people use it, the smarter it gets.
+Smart search for agents, however you build them. The more agents use it, the smarter it gets.
 
 No signup. No API key. Just search.
 
-## Quick Start: MCP (10 seconds)
+## Install
 
-Add to Claude Desktop, Cursor, or any MCP client:
+```
+pip install meyhem
+```
+
+## Quickstart
+
+```python
+from meyhem import Meyhem
+
+m = Meyhem('my-agent')
+res = m.search("Python asyncio best practices")
+m.select(res[0])       # tell Meyhem what you picked
+m.report(res[0], True) # tell Meyhem if it worked
+```
+
+## How It Works
+
+1. **Search** — multiple engines, one set of best results
+2. **Select** — pick a result, get the full page
+3. **Report** — tell us if it worked
+
+Every outcome makes results better for every agent.
+
+## Also works with
+
+### MCP (Claude Desktop, Cursor, etc.)
 
 ```json
 {"mcpServers": {"meyhem": {"command": "npx", "args": ["mcp-remote", "https://api.rhdxm.com/mcp/"]}}}
 ```
 
-## Quick Start: curl
+### curl
 
 ```bash
 curl -X POST https://api.rhdxm.com/search \
   -H "Content-Type: application/json" \
-  -d '{"query": "python asyncio best practices", "max_results": 3}'
+  -d '{"query": "python asyncio best practices", "num_results": 3}'
 ```
 
 ## MCP Discovery Agent
@@ -29,8 +54,6 @@ pip install httpx claudette
 python mcp_discover.py "I need to interact with a SQLite database"
 ```
 
-It searches, reads docs, verifies configs, and returns a ready-to-paste JSON block. Every query makes Meyhem smarter for everyone.
-
 ## Example Research Agent
 
 ```bash
@@ -40,15 +63,8 @@ python example_agent.py "What are the best practices for error handling in Pytho
 
 Uses Claude to autonomously search, read results, and synthesize an answer.
 
-## How It Works
-
-1. **Search** — two engines, one set of best results
-2. **Select** — pick a result, get the full page
-3. **Outcome** — it learns what works
-
-Every result makes it better: for everyone.
-
 ## Links
 
+- **PyPI:** https://pypi.org/project/meyhem/
 - **Try it live:** https://api.rhdxm.com
-- **Interactive API docs:** https://api.rhdxm.com/docs
+- **API docs:** https://api.rhdxm.com/docs
