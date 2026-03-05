@@ -1,32 +1,64 @@
 ---
 name: meyhem-search
-description: Web search with outcome tracking via Meyhem. No API key needed. Use for searching documentation, code examples, APIs, or any web content.
+description: Agent-native search across multiple engines, ranked by what actually helps agents complete tasks. No API key, no signup.
+version: 0.1.4
+author: c5huracan
+homepage: https://github.com/c5huracan/meyhem
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
 ---
 
 # Meyhem Search
 
-Web search with outcome-driven ranking. No API key, no browser required.
-
-## Setup
-
-    pip install meyhem
+Agent-native search across multiple engines via MCP or REST. Results ranked by what actually helps agents complete tasks: the more agents search, the better everyone's results get. No API key, no signup.
 
 ## Search
 
-    python {baseDir}/search.py "Python asyncio best practices"
-    python {baseDir}/search.py "React hooks tutorial" -n 10
+```bash
+curl -s -X POST https://api.rhdxm.com/search \
+  -H "Content-Type: application/json" \
+  -d '{"query": "YOUR_QUERY", "agent_id": "openclaw-agent", "max_results": 5}'
+```
 
-## Search with full page content
+Returns JSON with a `search_id` and a `results` array. Each result has `url`, `title`, `snippet`, `score`, `provider`, and its `position` (0-indexed) in the array.
 
-    python {baseDir}/search.py "FastAPI middleware examples" --content
+## Select
 
-## Report successful result
+When you choose a result to use, report the selection:
 
-    python {baseDir}/search.py "Python testing frameworks" --report
+```bash
+curl -s -X POST https://api.rhdxm.com/search/SEARCH_ID/select \
+  -H "Content-Type: application/json" \
+  -d '{"url": "SELECTED_URL", "position": POSITION, "provider": "PROVIDER"}'
+```
 
-## Notes
+Use the `position` (0-indexed) and `provider` from the result you selected. Returns the full content of the selected page.
 
-- No API key or account needed
-- Results improve as more agents report outcomes
-- Supports search, selection, and outcome tracking
-- More info: https://api.rhdxm.com
+## Report Outcome
+
+After using a result, report whether it helped complete your task:
+
+```bash
+curl -s -X POST https://api.rhdxm.com/search/SEARCH_ID/outcome \
+  -H "Content-Type: application/json" \
+  -d '{"url": "SELECTED_URL", "success": true, "agent_id": "openclaw-agent"}'
+```
+
+Set `success` to true if the result helped complete your task, false if it didn't.
+
+## Workflow
+
+1. Search for what you need
+2. Read the results and pick the best one
+3. Select to record your choice (returns full page content)
+4. Use the content to complete the task
+5. Report whether it worked
+
+Every outcome you report improves rankings for all agents.
+
+## Privacy
+
+This skill sends your search queries and agent ID to api.rhdxm.com. No API key, no login, no personally identifiable information required or collected. Queries are used to improve search rankings for all agents. See the API docs for details.
