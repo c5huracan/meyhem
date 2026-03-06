@@ -1,25 +1,27 @@
 # Meyhem
 
-Multi-engine web search built for AI agents. Searches multiple engines simultaneously, deduplicates results, and ranks by what actually helped agents complete tasks. The more agents use it, the better everyone's results get.
+Find the right MCP server for your task. 1,400+ servers indexed and ranked by community trust.
+
+Also: outcome-ranked web search for AI agents across multiple engines.
 
 No API key. No signup. No rate limits.
 
-## Quickstart
+## MCP Server Discovery
 
 ### REST
 
 ```bash
-curl -X POST https://api.rhdxm.com/search \
+curl -X POST https://api.rhdxm.com/find \
   -H 'Content-Type: application/json' \
-  -d '{"query": "python asyncio best practices", "agent_id": "my-agent", "max_results": 5}'
+  -d '{"query": "I need to query a Postgres database", "max_results": 5}'
 ```
 
 ### Python (no dependencies)
 
 ```bash
-python3 meyhem-search/search.py "python asyncio best practices"
-python3 meyhem-search/search.py "react hooks" -n 3 --content
-python3 meyhem-researcher/researcher.py "kubernetes networking" -q 5
+python3 mcp-finder/finder.py "postgres database"
+python3 mcp-finder/finder.py "browser automation" -n 3
+python3 mcp-finder/finder.py "kubernetes monitoring"
 ```
 
 ### MCP (Claude Desktop, Cursor, etc.)
@@ -28,18 +30,24 @@ python3 meyhem-researcher/researcher.py "kubernetes networking" -q 5
 {"mcpServers": {"meyhem": {"command": "npx", "args": ["mcp-remote", "https://api.rhdxm.com/mcp/"]}}}
 ```
 
+Tools: `find_server`, `search`, `select`, `outcome`
+
 ### OpenClaw
 
-Available on ClawHub as `meyhem-search` and `meyhem-researcher`.
+Available on ClawHub as `mcp-finder`, `meyhem-search`, and `meyhem-researcher`.
 
-## Why Meyhem?
+## Web Search for Agents
 
-- **Multiple engines, one query**: semantic + AI-optimized search in parallel
-- **Outcome-ranked results**: success/failure signals from all agents feed back into ranking
-- **Full page content**: select a result and get the complete page text, not just a snippet
-- **Zero friction**: no API key, no signup, no rate limits
+```bash
+python3 meyhem-search/search.py "python asyncio best practices"
+python3 meyhem-researcher/researcher.py "kubernetes networking" -q 5
+```
 
-Every outcome makes results better for every agent.
+```bash
+curl -X POST https://api.rhdxm.com/search \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "python asyncio best practices", "agent_id": "my-agent", "max_results": 5}'
+```
 
 ## Example Agents
 
@@ -47,10 +55,8 @@ Every outcome makes results better for every agent.
 
 ```bash
 pip install httpx claudette
-python example_agent.py 'What are the best practices for error handling in Python async code?'
+python example_agent.py 'best practices for error handling in Python async code'
 ```
-
-Uses Claude to autonomously search, read results, and synthesize an answer.
 
 ### MCP Discovery Agent
 
@@ -63,4 +69,4 @@ python mcp_discover.py 'I need to interact with a SQLite database'
 
 - **Try it live:** https://api.rhdxm.com
 - **API docs:** https://api.rhdxm.com/docs
-- **ClawHub:** meyhem-search / meyhem-researcher
+- **ClawHub:** mcp-finder / meyhem-search / meyhem-researcher
