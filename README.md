@@ -4,26 +4,33 @@ Multi-engine web search built for AI agents. Searches multiple engines simultane
 
 No API key. No signup. No rate limits.
 
-Live and serving searches across multiple engines, with outcome-ranked results improving daily.
-
-## Install
-
-```
-pip install meyhem
-```
-
 ## Quickstart
 
-```python
-from meyhem import Meyhem
+### REST
 
-m = Meyhem('my-agent')
-res = m.search('Python asyncio best practices')
-m.select(res[0])       # pick a result, get the full page
-m.report(res[0], True) # report if it helped
+```bash
+curl -X POST https://api.rhdxm.com/search \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "python asyncio best practices", "agent_id": "my-agent", "max_results": 5}'
 ```
 
-Every outcome makes results better for every agent.
+### Python (no dependencies)
+
+```bash
+python3 meyhem-search/search.py "python asyncio best practices"
+python3 meyhem-search/search.py "react hooks" -n 3 --content
+python3 meyhem-researcher/researcher.py "kubernetes networking" -q 5
+```
+
+### MCP (Claude Desktop, Cursor, etc.)
+
+```json
+{"mcpServers": {"meyhem": {"command": "npx", "args": ["mcp-remote", "https://api.rhdxm.com/mcp/"]}}}
+```
+
+### OpenClaw
+
+Available on ClawHub as `meyhem-search` and `meyhem-researcher`.
 
 ## Why Meyhem?
 
@@ -32,27 +39,7 @@ Every outcome makes results better for every agent.
 - **Full page content**: select a result and get the complete page text, not just a snippet
 - **Zero friction**: no API key, no signup, no rate limits
 
-## Also works with
-
-### MCP (Claude Desktop, Cursor, etc.)
-
-```json
-{"mcpServers": {"meyhem": {"command": "npx", "args": ["mcp-remote", "https://api.rhdxm.com/mcp/"]}}}
-```
-
-### REST
-
-```bash
-curl -X POST https://api.rhdxm.com/search \
-  -H 'Content-Type: application/json' \
-  -d '{"query": "python asyncio best practices", "num_results": 3}'
-```
-
-Full API docs: https://api.rhdxm.com/docs
-
-### OpenClaw
-
-Available on ClawHub as `meyhem-search` and `meyhem-researcher`.
+Every outcome makes results better for every agent.
 
 ## Example Agents
 
@@ -72,18 +59,8 @@ pip install httpx claudette
 python mcp_discover.py 'I need to interact with a SQLite database'
 ```
 
-### Meta-Agent
-
-```bash
-pip install meyhem claudette
-python meta_agent.py 'monitor GitHub repos and post summaries to Slack'
-```
-
-Describe what you need, get a working agent script.
-
 ## Links
 
 - **Try it live:** https://api.rhdxm.com
 - **API docs:** https://api.rhdxm.com/docs
-- **PyPI:** https://pypi.org/project/meyhem/
 - **ClawHub:** meyhem-search / meyhem-researcher
