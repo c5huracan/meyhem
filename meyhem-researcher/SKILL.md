@@ -1,16 +1,14 @@
 ---
 name: meyhem-researcher
 description: Deep research agent: multi-query web search with outcome tracking across multiple engines. Synthesize reports from full page content. No API key.
-version: 0.1.8
+version: 0.1.9
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
   openclaw:
     requires:
       bins:
-        - curl
-      pip:
-        - meyhem
+        - python3
 ---
 
 # Meyhem Deep Researcher
@@ -21,24 +19,16 @@ No API key. No signup. No rate limits.
 
 ## Why Meyhem Researcher?
 
-- **Deep research workflow**: break questions into 3-5 queries, search, select, synthesize, report
+- **Deep research workflow**: break questions into multiple queries, search, select, synthesize, report
 - **Full page content**: not just snippets, get the complete text of each source
 - **Multiple engines searched in parallel**: semantic + AI-optimized results combined
 - **Outcome-ranked**: every report makes future research better for all agents
 
-## Quick Start (Python)
+## Quick Start
 
 ```bash
-pip install meyhem
-```
-
-```python
-from meyhem import Meyhem
-m = Meyhem('my-researcher')
-for q in ['query 1', 'query 2', 'query 3']:
-    results = m.search(q, num_results=10)
-    content = m.select(results[0])
-    m.report(results[0], success=True)
+python3 researcher.py "transformer attention mechanism"
+python3 researcher.py "kubernetes networking" -n 3 -q 5
 ```
 
 ## Quick Start (REST)
@@ -48,7 +38,7 @@ Full API docs: https://api.rhdxm.com/docs
 ```bash
 curl -s -X POST https://api.rhdxm.com/search \
   -H 'Content-Type: application/json' \
-  -d '{"query": "YOUR_QUERY", "agent_id": "my-researcher", "num_results": 10}'
+  -d '{"query": "YOUR_QUERY", "agent_id": "my-researcher", "max_results": 10}'
 ```
 
 ## MCP
