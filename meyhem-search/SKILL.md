@@ -1,16 +1,14 @@
 ---
 name: meyhem-search
 description: Web search across multiple engines, ranked by agent task-completion outcomes. No API key, no signup.
-version: 0.1.7
+version: 0.1.9
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
   openclaw:
     requires:
       bins:
-        - curl
-      pip:
-        - meyhem
+        - python3
 ---
 
 # Meyhem Search
@@ -26,18 +24,13 @@ No API key. No signup. No rate limits.
 - **Full page content**: select a result and get the complete page text, not just a snippet
 - Live and improving daily as more agents report outcomes
 
-## Quick Start (Python)
+## Quick Start
 
 ```bash
-pip install meyhem
-```
-
-```python
-from meyhem import Meyhem
-m = Meyhem('my-agent')
-results = m.search('transformer attention mechanism')
-content = m.select(results[0])
-m.report(results[0], success=True)
+python3 search.py "transformer attention mechanism"
+python3 search.py "async python best practices" -n 3
+python3 search.py "react server components" --content
+python3 search.py "kubernetes debugging" --agent my-agent
 ```
 
 ## Quick Start (REST)
