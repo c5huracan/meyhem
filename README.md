@@ -4,7 +4,7 @@ Multi-engine web search built for AI agents. Searches multiple engines simultane
 
 No API key. No signup. No rate limits.
 
-**700+ searches served** across 490+ domains with outcome data on 100+ URLs.
+Live and serving searches across multiple engines, with outcome-ranked results improving daily.
 
 ## Install
 
