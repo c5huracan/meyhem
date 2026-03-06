@@ -1,6 +1,6 @@
 ---
 name: mcp-finder
-description: Find the right MCP server for your task. 1,400+ servers indexed and ranked by community trust. No API key.
+description: Find the right MCP server for your task. 4,500+ servers indexed and ranked by community trust. No API key.
 version: 0.1.0
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
@@ -13,13 +13,13 @@ metadata:
 
 # MCP Finder
 
-Find the right MCP server for any task. 1,400+ servers indexed from the MCP ecosystem, ranked by community trust (GitHub stars) and relevance. Describe what you need in plain language, get the best server for the job.
+Find the right MCP server for any task. 4,500+ servers indexed from the MCP ecosystem, ranked by community trust (GitHub stars) and relevance. Describe what you need in plain language, get the best server for the job.
 
 No API key. No signup. No rate limits.
 
 ## Why MCP Finder?
 
-- **1,400+ servers indexed**: crawled from awesome-mcp-servers and enriched with GitHub metadata
+- **4,500+ servers indexed**: crawled from awesome-mcp-servers and enriched with GitHub metadata
 - **Natural language search**: describe your task, get relevant results
 - **Ranked by trust**: GitHub stars + text relevance combined
 - **Zero dependencies**: stdlib Python only
