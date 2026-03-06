@@ -1,45 +1,39 @@
 #!/usr/bin/env python3
-"""Meyhem search skill for Pi coding agent."""
-import sys
+import sys, json, urllib.request
+
+API = 'https://api.rhdxm.com'
+
+def post(path, data):
+    req = urllib.request.Request(f'{API}{path}', json.dumps(data).encode(), headers={'Content-Type': 'application/json'})
+    return json.loads(urllib.request.urlopen(req).read())
 
 def main():
     args = sys.argv[1:]
     if not args or args[0] in ('-h', '--help'):
-        print("Usage: search.py <query> [-n <num>] [--content]")
-        print("\nOptions:")
-        print("  -n <num>      Number of results (default: 5)")
-        print("  --content     Fetch full page content for top result")
-        print("  --report      Report top result as successful")
-        print("\nNo API key needed.")
+        print("Usage: search.py <query> [-n <num>] [--agent <id>] [--content]")
         sys.exit(0)
 
-    n, content, report = 5, False, False
+    n, agent = 5, 'openclaw-agent'
     if '-n' in args:
-        i = args.index('-n')
-        n = int(args[i+1]); args = args[:i] + args[i+2:]
-    if '--content' in args:
-        content = True; args.remove('--content')
-    if '--report' in args:
-        report = True; args.remove('--report')
+        i = args.index('-n'); n = int(args[i+1]); args = args[:i] + args[i+2:]
+    if '--agent' in args:
+        i = args.index('--agent'); agent = args[i+1]; args = args[:i] + args[i+2:]
+    content = '--content' in args
+    if content: args.remove('--content')
 
     query = ' '.join(args)
-    from meyhem import Meyhem
-    m = Meyhem('pi-agent')
-    results = m.search(query, num_results=n)
+    resp = post('/search', dict(query=query, agent_id=agent, max_results=n))
+    search_id = resp['search_id']
 
-    for i, r in enumerate(results):
+    for i, r in enumerate(resp['results']):
         print(f"--- Result {i+1} ---")
-        print(f"Title: {r.title}")
-        print(f"URL: {r.url}")
-        print(f"Score: {r.score:.2f}")
-        print(f"Snippet: {r.snippet}")
+        print(f"Title: {r['title']}")
+        print(f"URL: {r['url']}")
+        print(f"Score: {r['score']:.2f}")
+        print(f"Snippet: {r['snippet']}")
         if content and i == 0:
-            sel = m.select(r)
-            print(f"Content:\n{sel.get('content', '')[:5000]}")
+            sel = post(f'/search/{search_id}/select', dict(url=r['url'], position=i, provider=r['provider']))
+            print(f"Content:\n{(sel.get('content') or '')[:5000]}")
         print()
-
-    if report and results:
-        m.report(results[0], True)
-        print("Reported top result as successful.")
 
 if __name__ == '__main__': main()
