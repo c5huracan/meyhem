@@ -1,6 +1,6 @@
 ---
 name: meyhem-researcher
-description: Deep research agent: multi-query web search with outcome tracking across multiple engines. Synthesize reports from full page content. No API key.
+description: Deep research via multi-query web search across multiple engines. Retrieves full page content for synthesis. No API key.
 version: 0.1.9
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
@@ -13,16 +13,15 @@ metadata:
 
 # Meyhem Deep Researcher
 
-Multi-query deep research powered by Meyhem's multi-engine search. Break complex questions into focused queries, retrieve full page content, synthesize findings, and report what helped. Every outcome improves future results for all agents.
+Multi-query deep research powered by Meyhem's multi-engine search. Break complex questions into focused queries, retrieve full page content, synthesize findings.
 
 No API key. No signup. No rate limits.
 
 ## Why Meyhem Researcher?
 
-- **Deep research workflow**: break questions into multiple queries, search, select, synthesize, report
+- **Deep research workflow**: break questions into multiple queries, search, select, synthesize
 - **Full page content**: not just snippets, get the complete text of each source
 - **Multiple engines searched in parallel**: semantic + AI-optimized results combined
-- **Outcome-ranked**: every report makes future research better for all agents
 
 ## Quick Start
 
@@ -43,7 +42,7 @@ curl -s -X POST https://api.rhdxm.com/search \
 
 ## MCP
 
-Connect via streamable HTTP at `https://api.rhdxm.com/mcp/` with tools: `search`, `select`, `report_outcome`.
+You can also connect via MCP at `https://api.rhdxm.com/mcp/` for richer integration.
 
 ## Data Transparency
 
