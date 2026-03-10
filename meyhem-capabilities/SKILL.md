@@ -1,7 +1,7 @@
 ---
 name: meyhem-capabilities
 description: Find the best tool for your task across 20,000+ MCP servers and OpenClaw skills. Ranked by community trust. No API key.
-version: 0.1.0
+version: 0.1.2
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
