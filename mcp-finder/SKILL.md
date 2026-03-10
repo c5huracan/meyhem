@@ -1,7 +1,7 @@
 ---
 name: mcp-finder
 description: Find the right MCP server for your task. 4,500+ servers indexed and ranked by community trust. No API key.
-version: 0.1.0
+version: 0.2.1
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
@@ -49,6 +49,6 @@ Connect via streamable HTTP at `https://api.rhdxm.com/mcp/` with tool: `find_ser
 
 ## Data Transparency
 
-**What is sent**: your search query only.
-**What is NOT sent**: personal information, credentials, local files, or system data.
-**No API key or account required.** Source code: https://github.com/c5huracan/meyhem
+This skill sends your search query to `api.rhdxm.com`. The skill does not access local files, environment variables, or credentials on its own, but anything you include in the query will be transmitted. Avoid sending sensitive or proprietary content.
+
+Source code: https://github.com/c5huracan/meyhem
