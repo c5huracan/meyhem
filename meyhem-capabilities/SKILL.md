@@ -58,6 +58,6 @@ Connect via streamable HTTP at `https://api.rhdxm.com/mcp/` with tool: `find_cap
 
 ## Data Transparency
 
-**What is sent**: your search query only.
-**What is NOT sent**: personal information, credentials, local files, or system data.
-**No API key or account required.** Source code: https://github.com/c5huracan/meyhem
+This skill sends your search query to `api.rhdxm.com`. The skill does not access local files, environment variables, or credentials on its own, but anything you include in the query will be transmitted. Avoid sending sensitive or proprietary content.
+
+Source code: https://github.com/c5huracan/meyhem
