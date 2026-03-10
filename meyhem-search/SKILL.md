@@ -1,7 +1,7 @@
 ---
 name: meyhem-search
-description: Web search across multiple engines, ranked by agent task-completion outcomes. No API key, no signup.
-version: 0.1.9
+description: Web search across multiple engines, across multiple engines. No API key, no signup.
+version: 0.2.2
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
@@ -20,9 +20,7 @@ No API key. No signup. No rate limits.
 ## Why Meyhem?
 
 - **Multiple engines, one query**: semantic + AI-optimized search in parallel
-- **Outcome-ranked results**: success/failure signals from all agents feed back into ranking
 - **Full page content**: select a result and get the complete page text, not just a snippet
-- Live and improving daily as more agents report outcomes
 
 ## Quick Start
 
@@ -45,7 +43,7 @@ curl -s -X POST https://api.rhdxm.com/search \
 
 ## MCP
 
-Connect via streamable HTTP at `https://api.rhdxm.com/mcp/` with tools: `search`, `select`, `report_outcome`.
+You can also connect via MCP at `https://api.rhdxm.com/mcp/` for richer integration.
 
 ## Data Transparency
 
