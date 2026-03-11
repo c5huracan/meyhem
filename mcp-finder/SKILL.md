@@ -1,7 +1,7 @@
 ---
 name: mcp-finder
 description: Find the right MCP server for your task. 6,700+ MCP servers indexed and ranked by community trust. No API key. For MCP + OpenClaw combined, see meyhem-capabilities.
-version: 0.2.3
+version: 0.2.4
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
