@@ -1,7 +1,7 @@
 ---
 name: mcp-finder
-description: Find the right MCP server for your task. 4,600+ MCP servers indexed and ranked by community trust. No API key. For MCP + OpenClaw combined, see meyhem-capabilities.
-version: 0.2.1
+description: Find the right MCP server for your task. 6,700+ MCP servers indexed and ranked by community trust. No API key. For MCP + OpenClaw combined, see meyhem-capabilities.
+version: 0.2.2
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
@@ -13,13 +13,13 @@ metadata:
 
 # MCP Finder
 
-Find the right MCP server for any task. 4,600+ servers indexed from the MCP ecosystem, ranked by community trust (GitHub stars) and relevance. Describe what you need in plain language, get the best server for the job.
+Find the right MCP server for any task. 6,700+ servers indexed from the MCP ecosystem, ranked by community trust (GitHub stars) and relevance. Describe what you need in plain language, get the best server for the job.
 
 No API key. No signup. No rate limits.
 
 ## Why MCP Finder?
 
-- **4,600+ servers indexed**: crawled from awesome-mcp-servers and enriched with GitHub metadata
+- **6,700+ servers indexed**: crawled from awesome-mcp-servers and the Official MCP Registry, enriched with GitHub metadata
 - **Natural language search**: describe your task, get relevant results
 - **Ranked by trust**: GitHub stars + text relevance combined
 - **Zero dependencies**: stdlib Python only
@@ -36,9 +36,7 @@ python3 finder.py "manage emails"
 ## REST API
 
 ```bash
-curl -X POST https://api.rhdxm.com/find \
-  -H 'Content-Type: application/json' \
-  -d '{"query": "kubernetes monitoring", "max_results": 5}'
+curl -X POST https://api.rhdxm.com/find   -H 'Content-Type: application/json'   -d '{"query": "kubernetes monitoring", "max_results": 5}'
 ```
 
 Full API docs: https://api.rhdxm.com/docs
