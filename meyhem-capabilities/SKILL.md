@@ -1,7 +1,7 @@
 ---
 name: meyhem-capabilities
 description: Find the best tool for your task across 20,000+ MCP servers and OpenClaw skills. Ranked by community trust. No API key.
-version: 0.1.2
+version: 0.1.0
 author: c5huracan
 homepage: https://github.com/c5huracan/meyhem
 metadata:
@@ -58,6 +58,6 @@ Connect via streamable HTTP at `https://api.rhdxm.com/mcp/` with tool: `find_cap
 
 ## Data Transparency
 
-This skill sends your search query to `api.rhdxm.com`. The skill does not access local files, environment variables, or credentials on its own, but anything you include in the query will be transmitted. Avoid sending sensitive or proprietary content.
-
-Source code: https://github.com/c5huracan/meyhem
+**What is sent**: your search query only.
+**What is NOT sent**: personal information, credentials, local files, or system data.
+**No API key or account required.** Source code: https://github.com/c5huracan/meyhem
